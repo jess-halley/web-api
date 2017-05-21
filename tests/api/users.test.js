@@ -25,3 +25,16 @@ test.cb('getUsers gets all users', function (t) {
     })
 })
 
+test.cb('get the details of one user', function (t) {
+  var expected = 'Ambitious Aardvark'
+  request(app)
+    .get('/users/99901')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err
+      t.is(res.body.user.name, expected)
+      t.end()
+    })
+
+})

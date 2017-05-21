@@ -13,4 +13,22 @@ router.get ('/', function (req, res) {
     })
 })
 
+router.get('/:id', function (req, res) {
+  db.getUser(req.params.id, req.app.get('knex'))
+    .then(function (user) {
+      res.send({user: user[0]})
+    })
+    .catch(function (err) {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+
+
+
+
+
+
+
+
 module.exports = router
