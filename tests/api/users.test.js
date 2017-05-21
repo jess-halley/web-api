@@ -36,5 +36,4 @@ test.cb('get the details of one user', function (t) {
       t.is(res.body.user.name, expected)
       t.end()
     })
-
 })

@@ -27,3 +27,14 @@ test('getUsers gets a single user', function (t) {
       t.is(actual, expected)
     })
 })
+
+
+test('create a new user', function (t){
+  var expected = 99927
+  return db.addUser({name:'Jess'}, t.context.db)
+  .then(function (result){
+    console.log(result);
+    var actual = result[0]
+    t.is(actual, expected)
+  })
+})
