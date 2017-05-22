@@ -54,11 +54,11 @@ test.cb('add a user', function (t) {
 test.cb('update a user from id', function (t) {
   var expected = "Joshua"
   request(app)
-    .post('/users/99910')
+    .put('/users/99910')
+    .send({name: expected})
     .end(function(err, res) {
       if (err) throw err
-      console.log(res.body);
-      t.is(res.body, 1)
+      t.is(res.body.updates, 1)
       t.end()
     })
 })

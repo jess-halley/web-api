@@ -21,11 +21,8 @@ function addUser (name, email, knex) {
     })
 }
 
-function updateUser (id, name, email, knex) {
+function updateUser (id, data, knex) {
   return knex('users')
-    .where('users.id', id)
-    .update({
-      name: name,
-      email: email
-    })
+    .where('id', id)
+    .update(data)
 }

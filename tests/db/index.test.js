@@ -45,8 +45,11 @@ test('create a new user', function (t){
 })
 
 test('updateUser', function (t) {
-  var expected = 'Kelly'
-  return db.updateUser(99911, expected, 'email@email.com', t.context.db)
+  var expected = {
+    name: 'Kelly',
+    email: 'email@email.com'
+  }
+  return db.updateUser(99911, expected, t.context.db)
     .then(function (numOfUpdates) {
       t.is(numOfUpdates, 1)
       db.getUser(99911, t.context.db)
