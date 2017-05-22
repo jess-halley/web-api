@@ -49,5 +49,10 @@ test('updateUser', function (t) {
   return db.updateUser(99911, expected, 'email@email.com', t.context.db)
     .then(function (numOfUpdates) {
       t.is(numOfUpdates, 1)
+      db.getUser(99911, t.context.db)
+        .then((userArray) => {
+          var user = userArray[0]
+          t.is(user.name, expected)
+        })
     })
 })
