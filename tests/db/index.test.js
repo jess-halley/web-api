@@ -32,16 +32,15 @@ test('getUsers gets a single user', function (t) {
 test('create a new user', function (t){
   var expected = 99927
   return db.addUser('Jess', 'gsfjd', t.context.db)
-  .then(function (result){
-    var actual = result[0]
-    t.is(actual, expected)
-    return(result[0])
+  .then(function (idArray){
+    t.is(idArray[0], expected)
+    return(idArray[0])
   })
   .then(function (id){
     db.getUser(id, t.context.db)
-    .then(function (result) {
-      var actual = result[0].name
-      t.is(actual, 'Jess')
+    .then(function (userArray) {
+      var name = userArray[0].name
+      t.is(name, 'Jess')
     })
   })
 })
