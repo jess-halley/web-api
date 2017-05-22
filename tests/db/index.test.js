@@ -28,7 +28,6 @@ test('getUsers gets a single user', function (t) {
     })
 })
 
-
 test('create a new user', function (t){
   var expected = 99927
   return db.addUser('Jess', 'gsfjd', t.context.db)
@@ -43,4 +42,12 @@ test('create a new user', function (t){
       t.is(name, 'Jess')
     })
   })
+})
+
+test('updateUser', function (t) {
+  var expected = 'Kelly'
+  return db.updateUser(99911, expected, 'email@email.com', t.context.db)
+    .then(function (numOfUpdates) {
+      t.is(numOfUpdates, 1)
+    })
 })

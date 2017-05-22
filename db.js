@@ -1,7 +1,8 @@
 module.exports = {
   getUser: getUser,
   getUsers: getUsers,
-  addUser: addUser
+  addUser: addUser,
+  updateUser
 }
 
 function getUsers (knex) {
@@ -15,6 +16,15 @@ function getUser (id, knex) {
 function addUser (name, email, knex) {
   return knex('users')
     .insert({
+      name: name,
+      email: email
+    })
+}
+
+function updateUser (id, name, email, knex) {
+  return knex('users')
+    .where('users.id', id)
+    .update({
       name: name,
       email: email
     })
