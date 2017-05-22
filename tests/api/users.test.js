@@ -50,3 +50,15 @@ test.cb('add a user', function (t) {
       t.end()
     })
 })
+
+test.cb('update a user from id', function (t) {
+  var expected = "Joshua"
+  request(app)
+    .post('/users/99910')
+    .end(function(err, res) {
+      if (err) throw err
+      console.log(res.body);
+      t.is(res.body, 1)
+      t.end()
+    })
+})
