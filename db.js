@@ -13,5 +13,6 @@ function getUser (id, knex) {
 }
 
 function addUser (newUser, knex) {
+  console.log('in insert: ' + newUser);
   return knex('users').insert(newUser)
 }
