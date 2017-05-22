@@ -12,7 +12,10 @@ function getUser (id, knex) {
   return knex('users').where('id', id)
 }
 
-function addUser (newUser, knex) {
-  console.log('in insert: ' + newUser);
-  return knex('users').insert(newUser)
+function addUser (name, email, knex) {
+  return knex('users')
+    .insert({
+      name: name,
+      email: email
+    })
 }

@@ -31,25 +31,17 @@ test('getUsers gets a single user', function (t) {
 
 test('create a new user', function (t){
   var expected = 99927
-  return db.addUser({name:'Jess', email:'gsfjd'}, t.context.db)
+  return db.addUser('Jess', 'gsfjd', t.context.db)
   .then(function (result){
     var actual = result[0]
     t.is(actual, expected)
     return(result[0])
   })
-  .then(function (id) {
-    console.log('Id: ' + id);
-    return id
-  })
   .then(function (id){
-    return db.getUser(id, t.context.db)
-  })
-  .then(function (user) {
-    console.log('Added user: ' + user[0]);
-    return user
-  })
-  .then(function (addedUser){
-    var actual = result[0].name
-    t.is(actual, 'Jess')
+    db.getUser(id, t.context.db)
+    .then(function (result) {
+      var actual = result[0].name
+      t.is(actual, 'Jess')
+    })
   })
 })
