@@ -37,3 +37,18 @@ test.cb('get the details of one user', function (t) {
       t.end()
     })
 })
+
+
+test.cb('add a user', function (t) {
+  var expected = 99927
+  request(app)
+    .post('/users')
+    .expect('Content-Type', /json/)
+    .expect(201)
+    .end(function(err, res) {
+      if (err) throw err
+      console.log(res.body);
+      t.is(res.body.id, expected)
+      t.end()
+    })
+})
