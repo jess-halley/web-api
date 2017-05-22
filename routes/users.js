@@ -23,7 +23,16 @@ router.get('/:id', function (req, res) {
     })
 })
 
-
+router.post('/', function (req, res) {
+  var {name, email} = req.body
+  db.addUser(name, email, req.app.get('knex'))
+    .then(function (id){
+        res.send({id: id[0]})
+    })
+    .catch(function (err) {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
 
 
 

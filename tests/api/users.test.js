@@ -44,10 +44,8 @@ test.cb('add a user', function (t) {
   request(app)
     .post('/users')
     .expect('Content-Type', /json/)
-    .expect(201)
     .end(function(err, res) {
       if (err) throw err
-      console.log(res.body);
       t.is(res.body.id, expected)
       t.end()
     })
